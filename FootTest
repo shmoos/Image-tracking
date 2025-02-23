@@ -1,0 +1,115 @@
+// Author: Yusuf Jabbar
+// Date:   10/26/22
+// Rev:    05
+// Notes: make feet go in a square!
+// 
+
+import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.Container;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.ImageIcon;
+
+public class FootTestNew extends JPanel
+{
+  private Image shoe;
+  
+  // the FootTestNew class now has an x, y coordinate and a foot
+  private int x = 300; // variable name not the best style but left for comparison
+  private int y = 100; // variable name not the best style but left for comparison
+  private int stepLength = 100;
+  private Foot foot;  //
+
+  // Constructor
+  public FootTestNew()
+  {
+    shoe = (new ImageIcon("leftshoe.gif")).getImage(); //image for shoe brought to life
+    foot = new Foot(300, 100, shoe); // foot is brought to life
+    
+  }
+
+  // Called automatically when the panel needs repainting
+  public void paintComponent(Graphics g)
+  {
+    super.paintComponent(g);
+    
+    foot.draw(g);
+    foot.turn(90);
+    foot.moveForward(stepLength); // first foot 
+    
+    foot.draw(g);
+    foot.turn(90);
+    foot.moveForward(stepLength); // second foot moving 
+    
+    foot.draw(g);
+    foot.turn(90);
+    foot.moveForward(stepLength); // third foot placed 
+    
+    foot.draw(g);
+    foot.turn(90);
+    foot.moveForward(stepLength); // last foot which completes it 
+  
+    
+    // under this is all experimental which different lines of code and overall mesing around 
+//   foot.moveSideways(100);
+//   foot.draw(g);
+//   foot.turn(180);
+//  
+//    
+//   	foot.moveSideways(200);
+//    foot.turn(180);
+//    foot.draw(g);
+//    
+//    foot.moveForward(100); 
+//    foot.moveSideways(300);
+//    foot.turn(90);
+//    foot.draw(g);
+    
+    
+    foot.draw(g);
+    foot.turn(90);
+    foot.moveForward(100);
+    
+    foot.draw(g);
+    foot.turn(45);
+    foot.moveForward(stepLength);
+    
+    foot.draw(g);
+    foot.turn(45);
+    foot.moveForward(stepLength);
+    
+    foot.draw(g);
+    foot.turn(45);
+    foot.moveForward(stepLength);
+    
+//    // this is an example of how to use the for-loop to iterate
+//    // instead of the lines above
+//    // no foot instantiation here, all we do is draw the foot now
+//    for (int count = 1; count <= 8; count++)
+//    {
+//      foot.draw(g);
+//      foot.turn(45);
+//      foot.moveForward(stepLength);
+//    }
+
+    // Draw a cursor at the expected center of the first "shoe":
+    g.drawLine(x - 50, y, x + 50, y);
+    g.drawLine(x, y - 50, x, y + 50);
+  }
+
+  public static void main(String[] args)
+  {
+    JFrame window = new JFrame("Feet");
+    window.setBounds(100, 100, 800, 500);
+    window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    FootTestNew panel = new FootTestNew();
+    panel.setBackground(Color.WHITE);
+    Container c = window.getContentPane();
+    c.add(panel);
+
+    window.setVisible(true);
+  }
+}
